@@ -2,12 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Real Python's Learning Paths</title>
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0">
 </head>
 <body>
-<h1>Real Python Learning Paths: My Progression</h1>
+<h1>Real Python Learning Paths - My Progression</h1>
 {% for learning_path in learning_paths %}
     <h3>{{ learning_path.title }}</h3>
+    {% if learning_path.url %}
+        <a href="{{ learning_path.url }}"><img src="{{ learning_path.image }}" alt="Learning path's illustration" width="300"></a>
+    {% else %}
+        <img src="{{ learning_path.image }}" alt="Learning path's illustration" width="300">
+    {% endif %}
+    <p>Progression : {{ learning_path.progression }}</p>
+    <a href="{% url 'learningpaths:lp_detail' learning_path.id %}"
+                       class="btn btn-primary">
+                        Read More
+                    </a>
+
 {% endfor %}
 </body>
 </html>
