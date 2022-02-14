@@ -8,7 +8,7 @@ def all_learning_paths(request):
     for lp in lps:
         courses = Course.objects.values("complete").filter(learning_path=lp["id"])
         completed = [item['complete'] for item in courses].count(True)
-        lp["progression"] = completed / len(courses)
+        lp["progression"] = completed / len(courses) * 100
     return render(request,
                   "learningpaths/index.html",
                   {'learning_paths': lps, },
